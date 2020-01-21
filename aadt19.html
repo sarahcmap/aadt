@@ -13084,7 +13084,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Date: Jan 16, 2020</p>
+<p>Date: Jan 21, 2020</p>
 
 </div>
 </div>
@@ -13258,14 +13258,14 @@ requirejs.config({
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Get-detector-IDS-of-count-stations">Get detector IDS of count stations<a class="anchor-link" href="#Get-detector-IDS-of-count-stations">&#182;</a></h3><p>There are 196 count stations.</p>
+<h3 id="Get-detector-IDS-of-count-stations">Get detector IDS of count stations<a class="anchor-link" href="#Get-detector-IDS-of-count-stations">&#182;</a></h3><p>There are 190 count stations.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[204]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">atlasdir</span> <span class="o">+</span> <span class="s2">&quot;2019_grouped_files/lookup_aadt_no0_blanks.csv&quot;</span><span class="p">)</span>
@@ -13278,7 +13278,7 @@ requirejs.config({
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[205]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">columns</span>
@@ -13294,7 +13294,7 @@ requirejs.config({
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[4]:</div>
+    <div class="prompt output_prompt">Out[205]:</div>
 
 
 
@@ -13303,6 +13303,40 @@ requirejs.config({
 <pre>Index([&#39;Unnamed: 0&#39;, &#39;expressway&#39;, &#39;loc1&#39;, &#39;type1&#39;, &#39;id&#39;, &#39;direction&#39;, &#39;type2&#39;,
        &#39;location1&#39;, &#39;detectorid2&#39;, &#39;aadt&#39;, &#39;aadt18&#39;, &#39;aadt19&#39;],
       dtype=&#39;object&#39;)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[210]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">detectorid2</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+<span class="c1"># there are 815 unique sensors in the lookup table</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[210]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>815</pre>
 </div>
 
 </div>
@@ -13383,10 +13417,10 @@ Name: type1, dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[192]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">idlist</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">idlist</span><span class="p">))</span>
 </pre></div>
 
     </div>
@@ -13399,13 +13433,72 @@ Name: type1, dtype: int64</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[8]:</div>
+    <div class="prompt output_prompt">Out[192]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>196</pre>
+<pre>190</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[211]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lookuplist</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">detectorid2</span><span class="p">)]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[212]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lookuplist</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">lookuplist</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[213]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">lookuplist</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[213]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>815</pre>
 </div>
 
 </div>
@@ -13423,6 +13516,8 @@ Date of concern include: <br></p>
 <li>mean less than 1000: 1/17, 2/3, 4/30</li>
 <li>mean between 1000-3000: 2/1, 4/11, 5/1, 6/30, 10/21</li>
 <li>min less than 2000 (mean ok): only one sensor is off - 9900 on 8/12, 8/15, 8/19, and 6161 on 8/13, 8/20</li>
+<li>Detector 2008 only has 37 days with data, and 9900 has 60 days with data</li>
+<li>non-count station sensors with lower number of days with data: 2833, 5606, 8602, 9031, 5909, 9601, 5711, 9701</li>
 </ul>
 
 </div>
@@ -13430,13 +13525,373 @@ Date of concern include: <br></p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[207]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">dowdate</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">atlasdir</span> <span class="o">+</span> <span class="s2">&quot;2019_grouped_files/dow_date.csv&quot;</span><span class="p">)</span>
 </pre></div>
 
     </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[208]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dowdate</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[208]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>dow</th>
+      <th>DetectorId</th>
+      <th>volume</th>
+      <th>DetectorId1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2019-01-17</td>
+      <td>3</td>
+      <td>1</td>
+      <td>0.0</td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2019-01-17</td>
+      <td>3</td>
+      <td>2</td>
+      <td>13.0</td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2019-01-17</td>
+      <td>3</td>
+      <td>3</td>
+      <td>9.0</td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2019-01-17</td>
+      <td>3</td>
+      <td>4</td>
+      <td>47.0</td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2019-01-17</td>
+      <td>3</td>
+      <td>16</td>
+      <td>5.0</td>
+      <td>15</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[184]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dowdate</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+<span class="c1"># 267 days in the dataset</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[184]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>267</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[209]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dowdate</span><span class="o">.</span><span class="n">DetectorId</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+<span class="c1"># there are 1661 sensors in the dataset</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[209]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1661</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[214]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lookupsensors</span> <span class="o">=</span> <span class="n">dowdate</span><span class="p">[</span><span class="n">dowdate</span><span class="p">[</span><span class="s1">&#39;DetectorId&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">lookuplist</span><span class="p">)]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s1">&#39;DetectorId1&#39;</span><span class="p">:[</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span><span class="s1">&#39;max&#39;</span><span class="p">,</span><span class="s1">&#39;min&#39;</span><span class="p">,</span><span class="s1">&#39;count&#39;</span><span class="p">]})</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">droplevel</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[216]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lookupsensors</span><span class="p">[</span><span class="s1">&#39;count&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+<span class="c1"># most of the days have data for 805 / 815 sensors</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[216]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>count    267.000000
+mean     807.026217
+std        2.889452
+min      805.000000
+25%      805.000000
+50%      805.000000
+75%      807.000000
+max      813.000000
+Name: count, dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[226]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dowdate</span><span class="p">[</span><span class="n">dowdate</span><span class="p">[</span><span class="s1">&#39;DetectorId&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">lookuplist</span><span class="p">)]</span><span class="o">.</span><span class="n">DetectorId</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[226]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>7514     267
+3801     267
+5083     267
+10716    267
+6618     267
+89       267
+2136     267
+6106     267
+9950     267
+6161     212
+2833     125
+5606      62
+8602      62
+9031      62
+5909      62
+9601      62
+5711      62
+9900      60
+2008      37
+9701       2
+Name: DetectorId, dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[180]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dowdate</span><span class="p">[</span><span class="n">dowdate</span><span class="p">[</span><span class="s1">&#39;DetectorId&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">idlist</span><span class="p">)]</span><span class="o">.</span><span class="n">DetectorId</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[180]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>2005    267
+6007    267
+6161    212
+9900     60
+2008     37
+Name: DetectorId, dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[185]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">datelist</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">dowdate</span><span class="p">[</span><span class="n">dowdate</span><span class="p">[</span><span class="s1">&#39;DetectorId&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">idlist</span><span class="p">)]</span><span class="o">.</span><span class="n">DetectorId</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[193]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">datelist</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[193]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>190</pre>
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -13569,11 +14024,11 @@ Date of concern include: <br></p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[127]:</div>
+<div class="prompt input_prompt">In&nbsp;[195]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">forplot</span><span class="p">[</span><span class="s1">&#39;count&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
-<span class="c1"># All count stations have data for every day in the dataset</span>
+<span class="c1"># most days have data for all but 2 stations</span>
 </pre></div>
 
     </div>
@@ -13586,7 +14041,7 @@ Date of concern include: <br></p>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[127]:</div>
+    <div class="prompt output_prompt">Out[195]:</div>
 
 
 
@@ -14194,7 +14649,7 @@ Name: volume, dtype: float64</pre>
 <div class="prompt input_prompt">In&nbsp;[158]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># what is looks like otherwise, 0 - 700,000,000</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># what it looks like otherwise, 0 - 700,000,000</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">LCSdow</span><span class="p">[(</span><span class="n">LCSdow</span><span class="p">[</span><span class="s1">&#39;volume&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)]</span><span class="o">.</span><span class="n">volume</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">rug</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">kde</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 

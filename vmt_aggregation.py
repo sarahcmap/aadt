@@ -92,45 +92,41 @@ for file in os.listdir(savepath):
 # merge all months
 combined = pd.concat(dflist)
 
-# testing
-hour = combined.groupby(['date','dow','hour','DetectorId']).agg({'volume':'sum','DetectorId1':'sum'})
-hour.to_csv(agg_savepath + "hour_dow_date.csv")
-hour = pd.read_csv(agg_savepath + "hour_dow_date.csv")
-
 # group by date and dow, save
 dow = combined.groupby(['date','dow','DetectorId']).agg({'volume':'sum','DetectorId1':'sum'})
 dow.to_csv(agg_savepath + "dow_date.csv")
 
 # read back in to get all columns after the groupby (there are other ways to accomplish this too)
-dow = pd.read_csv(agg_savepath + "dow_date.csv")
+# _cleaned version went through cleanVolumeData.ipynb
+dow = pd.read_csv(agg_savepath + "dow_date_cleaned.csv")
 
 # make a month column
 dow.date = dow.date.astype('datetime64')
 dow['month'] = dow.date.dt.month
 
 # get rid of zeros (zero volume for the whole day), then get average daily volume by month, dow, save
-dow0 = dow[dow.volume != 0]
+dow0 = dow[dow.volume != 0] # this was already done in _cleaned version fyi
 monthdowavg = dow0.groupby(['month','dow','DetectorId']).agg({'volume':'mean','DetectorId1':'sum'})
-monthdowavg.to_csv(agg_savepath + "monthdowavg0.csv")
+monthdowavg.to_csv(agg_savepath + "monthdowavg0_v3.csv")
 
 # sum volume by month and dow, save
 monthdowsum = dow0.groupby(['month','dow','DetectorId']).agg({'volume':'sum','DetectorId1':'sum'})
-monthdowsum.to_csv(agg_savepath + "monthdowsum0.csv")
+monthdowsum.to_csv(agg_savepath + "monthdowsum0_v3.csv")
 
 # average over all hours and dates by DOW
 dowonly = monthdowavg.groupby(['DetectorId','dow']).agg({'volume':'mean','DetectorId1':'sum'})
-dowonly.to_csv(agg_savepath + "dowonly_v2.csv")
+dowonly.to_csv(agg_savepath + "dowonly_v3.csv")
 
 # average over all DOW, round to nearest 100
 aadt = dowonly.groupby('DetectorId').agg({'volume':'mean'})
 aadt['volume'] = aadt['volume']/100
 aadt['volume'] = aadt['volume'].round(0)
 aadt['volume'] = aadt['volume'] * 100
-aadt.to_csv(agg_savepath + "aadt_no0_v2.csv")
+aadt.to_csv(agg_savepath + "aadt_no0_v3.csv")
 
 # populate lookup file with aadt
 lookup = pd.read_csv(lookup_file)
 aadt.rename({'volume':'aadt19'},axis=1,inplace=True)
 l_df = lookup.merge(aadt,how='left',left_on=detectoridcolname,right_on='DetectorId')
 l_df = l_df[~l_df.aadt19.isnull()]
-l_df.to_csv(agg_savepath + "lookup_aadt_no0_blanks_v2.csv")
+l_df.to_csv(agg_savepath + "lookup_aadt_no0_blanks_v3.csv")

@@ -105,6 +105,7 @@ dow.date = dow.date.astype('datetime64')
 dow['month'] = dow.date.dt.month
 
 # get rid of zeros (zero volume for the whole day), then get average daily volume by month, dow, save
+# this is the innermost calculation in the formula
 dow0 = dow[dow.volume != 0] # this was already done in _cleaned version fyi
 monthdowavg = dow0.groupby(['month','dow','DetectorId']).agg({'volume':'mean','DetectorId1':'sum'})
 monthdowavg.to_csv(agg_savepath + "monthdowavg0_v3.csv")
@@ -130,3 +131,13 @@ aadt.rename({'volume':'aadt19'},axis=1,inplace=True)
 l_df = lookup.merge(aadt,how='left',left_on=detectoridcolname,right_on='DetectorId')
 l_df = l_df[~l_df.aadt19.isnull()]
 l_df.to_csv(agg_savepath + "lookup_aadt_no0_blanks_v3.csv")
+
+
+# appendix - testing different grouping [like FHWA formula]
+combined.date = combined.date.astype('datetime64')
+combined['month'] = combined.date.dt.month
+houravg = combined.groupby(['DetectorId','month','dow','hour']).agg({'volume':'mean','DetectorId1':'sum'})
+monthdowfromhour = houravg.groupby(['DetectorId','month','dow']).agg({'volume':'sum','DetectorId1':'sum'})
+mdfh0 = monthdowfromhour[monthdowfromhour['volume'] != 0]   # count from 119966 to 105296
+mdfh0 = mdfh0.reset_index()
+mdfh0.DetectorId1.describe()
